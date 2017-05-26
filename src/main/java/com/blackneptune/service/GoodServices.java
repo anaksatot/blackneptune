@@ -1,5 +1,7 @@
 package com.blackneptune.service;
 import com.blackneptune.entity.Good;
+import com.blackneptune.entity.GoodCategory;
+
 import java.util.List;
 
 /**
@@ -7,15 +9,16 @@ import java.util.List;
  */
 public interface GoodServices {
 
-    public void create(Good good);
+    void create(Good good);
 
-    public void update(Good good);
+    void update(Good good);
 
-    public Good findById(int id);
+    Good findById(int id);
 
-    public List<Good> getAll();
+    List<Good> getAll();
 
-    public void delete(Good good);
+    void delete(Good good);
 
-    public void deleteByID(int goodID);
+    void deleteByID(int goodID);
+
 }

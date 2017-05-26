@@ -3,6 +3,7 @@ package com.blackneptune.service.serviceImpl;
 import java.util.List;
 import com.blackneptune.dao.GoodDao;
 import com.blackneptune.entity.Good;
+import com.blackneptune.entity.GoodCategory;
 import com.blackneptune.service.GoodServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class GoodServiceImpl implements GoodServices{
         catch (Exception ex) {
             System.out.println("Error creating the good: " + ex.toString());
         }
-        System.out.println("Good succesfully created!");
+        System.out.println("Good successfully created!");
     }
 
     @Override
@@ -43,8 +44,7 @@ public class GoodServiceImpl implements GoodServices{
 
     @Override
     public Good findById(int id) {
-        Good good =  goodDao.findById(id);
-        return good;
+        return goodDao.findById(id);
     }
 
     @Override
@@ -66,6 +66,7 @@ public class GoodServiceImpl implements GoodServices{
         catch (Exception ex) {
             System.out.println("Error deleting the good by ID: " + ex.toString());
         }
-        System.out.println("Good succesfully deleting by ID!");
+        System.out.println("Good successfully deleting by ID!");
     }
+
 }

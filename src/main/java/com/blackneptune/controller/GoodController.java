@@ -1,6 +1,8 @@
 package com.blackneptune.controller;
 
 import com.blackneptune.entity.Good;
+import com.blackneptune.entity.GoodCategory;
+import com.blackneptune.service.GoodCategoryServices;
 import com.blackneptune.service.GoodServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,9 @@ public class GoodController {
     @Autowired
     private GoodServices goodService;
 
+    @Autowired
+    private GoodCategoryServices goodCategoryService;
+
     @RequestMapping(value = "/getAllGoods", method = RequestMethod.GET)
     public ResponseEntity<List<Good>> getAllGoods() {
         return new ResponseEntity<List<Good>>(goodService.getAll(), HttpStatus.OK);
@@ -29,8 +34,8 @@ public class GoodController {
     }
 
     @RequestMapping(value="/createGood")
-    public void createGood(@RequestParam("name") String name) {
-        goodService.create(new Good(name));
+    public void createGood(@RequestParam("name") String name, @RequestParam("goodCategoryID") Integer goodCategoryID) {
+        goodService.create(new Good(name,goodCategoryService.findById(goodCategoryID)));
     }
 
     @RequestMapping(value="/deleteGoodByID")

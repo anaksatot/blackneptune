@@ -14,14 +14,16 @@ public class Good {
     private int goodID;
     @Column(name= "good_name")
     private String goodName;
-    @Transient
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "good_category_id")
     private GoodCategory goodCategory;
 
     public Good() {
     }
 
-    public Good(String goodName) {
+    public Good(String goodName, GoodCategory goodCategory) {
         this.goodName = goodName;
+        this.goodCategory = goodCategory;
     }
 
 
@@ -36,10 +38,6 @@ public class Good {
     public String getGoodName() {
         return goodName;
     }
-
-//    public void setGoodID(int goodID) {
-//        this.goodID = goodID;
-//    }
 
     public void setGoodName(String goodName) {
         this.goodName = goodName;

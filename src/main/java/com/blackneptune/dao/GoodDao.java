@@ -1,6 +1,7 @@
 package com.blackneptune.dao;
 
 import com.blackneptune.entity.Good;
+import com.blackneptune.entity.GoodCategory;
 
 import java.util.List;
 
@@ -9,16 +10,16 @@ import java.util.List;
  */
 public interface GoodDao {
 
-    public void persist(Good good);
+    void persist(Good good);
 
-    public void update(Good good);
+    void update(Good good);
 
-    public Good findById(int id);
+    Good findById(int id);
 
-    public List<Good> findAll();
+    List<Good> findAll();
 
-    public boolean delete(Good good);
+    boolean delete(Good good);
 
-    public boolean deleteByID(int goodID);
+    boolean deleteByID(int goodID);
 
 }

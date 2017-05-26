@@ -14,21 +14,22 @@ public class Tender {
     @Column(name= "tender_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int tenderID;
-    @Transient
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "user_id")
     private User userCustomer;
     @Transient
     private TenderStatus tenderStatus;
     @Transient
     private GoodCategory goodCategory;
-    @Transient
+    @Column(name= "publishing_date")
     private LocalDate publishingDate;
-    @Transient
+    @Column(name= "closing_date")
     private LocalDate closingDate;
-    @Column(name= "description")
+    @Column(name= "tender_description")
     private String tenderDescription;
-    @Transient
-    private double expectantValue;
-    @Transient
+    @Column(name= "expected_value")
+    private double expectedValue;
+    @OneToMany (fetch = FetchType.LAZY, mappedBy = "tender")
     private Set<TenderDetail> tenderDetails;
 
     public Tender() {
@@ -36,6 +37,19 @@ public class Tender {
 
     public Tender(String tenderDescription) {
         this.tenderDescription = tenderDescription;
+    }
+
+    public Tender(User user, String tenderDescription, double expectedValue) {
+        this.tenderDescription = tenderDescription;
+        this.expectedValue = expectedValue;
+        this.userCustomer = user;
+    }
+
+    public Tender(String tenderDescription, double expectedValue, Set<TenderDetail> tenderDetails) {
+        this.tenderDescription = tenderDescription;
+        this.expectedValue = expectedValue;
+        this.tenderDetails = tenderDetails;
+        System.out.println(tenderDetails.toString());
     }
 
     public int getTenderID() {
@@ -66,8 +80,8 @@ public class Tender {
         return tenderDescription;
     }
 
-    public double getExpectantValue() {
-        return expectantValue;
+    public double getTenderExpectedValue() {
+        return expectedValue;
     }
 
     public Set<TenderDetail> getTenderDetails() {
@@ -102,8 +116,8 @@ public class Tender {
         this.tenderDescription = tenderDescription;
     }
 
-    public void setExpectantValue(double expectantValue) {
-        this.expectantValue = expectantValue;
+    public void setTenderExpectedValue(double expectantValue) {
+        this.expectedValue = expectantValue;
     }
 
     public void setTenderDetails(Set<TenderDetail> tenderDetails) {

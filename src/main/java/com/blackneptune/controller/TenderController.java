@@ -32,14 +32,10 @@ public class TenderController {
     }
 
     @RequestMapping(value="/createTender")
-    public String createTender(@RequestParam("description") String description) {
-        try {
-            tenderService.create(new Tender(description));
-        }
-        catch (Exception ex) {
-            return "Error creating the tender: " + ex.toString();
-        }
-        return "Tender successfully created!";
+    public void createTender(@RequestParam("userCustomerID") Integer userCustomerID,
+                             @RequestParam("description") String description,
+                             @RequestParam("expectedValue") Double expectedValue) {
+            tenderService.create(tenderService.createTenderByRequestParameters(userCustomerID, description,expectedValue));
     }
 
     @RequestMapping(value="/deleteTenderByID")

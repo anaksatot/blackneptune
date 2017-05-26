@@ -19,4 +19,6 @@ public interface TenderServices {
     void delete(Tender tender);
 
     void deleteByID(int goodID);
+
+    Tender createTenderByRequestParameters(Integer userCustomerID, String description, Double expectedValue);
 }

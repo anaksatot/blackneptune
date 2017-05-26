@@ -2,6 +2,7 @@ package com.blackneptune.dao.daoImpl;
 
 import com.blackneptune.dao.GoodDao;
 import com.blackneptune.entity.Good;
+import com.blackneptune.entity.GoodCategory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -63,4 +64,5 @@ public class GoodDaoImpl implements GoodDao {
         return false;
 
     }
+
 }
