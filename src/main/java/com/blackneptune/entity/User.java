@@ -97,4 +97,17 @@ public class User {
     public void setIdentificationCode(String identificationCode) {
         this.identificationCode = identificationCode;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userID=" + userID +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", role=" + role +
+                ", identificationCode='" + identificationCode + '\'' +
+                '}';
+    }
 }

@@ -1,6 +1,7 @@
 package com.blackneptune.service;
 
 import com.blackneptune.entity.Tender;
+import com.blackneptune.entityForRequestBody.TenderRequestBody;
 
 import java.util.List;
 
@@ -20,5 +21,5 @@ public interface TenderServices {
 
     void deleteByID(int goodID);
 
-    Tender createTenderByRequestParameters(Integer userCustomerID, String description, Double expectedValue);
+    Tender createTenderByRequestParameters(TenderRequestBody tenderRequestBody);
 }

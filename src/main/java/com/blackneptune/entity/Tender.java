@@ -1,7 +1,10 @@
 package com.blackneptune.entity;
 
+import com.blackneptune.entityForRequestBody.TenderDetailRequestBody;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Set;
 
 /**
@@ -17,18 +20,20 @@ public class Tender {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "user_id")
     private User userCustomer;
-    @Transient
+    @Column(name= "tender_status")
     private TenderStatus tenderStatus;
     @Transient
     private GoodCategory goodCategory;
-    @Column(name= "publishing_date")
-    private LocalDate publishingDate;
-    @Column(name= "closing_date")
-    private LocalDate closingDate;
     @Column(name= "tender_description")
     private String tenderDescription;
     @Column(name= "expected_value")
     private double expectedValue;
+    @Column(name= "publishing_date")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date publishingDate;
+    @Column(name= "closing_date")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private Date closingDate;
     @OneToMany (fetch = FetchType.LAZY, mappedBy = "tender")
     private Set<TenderDetail> tenderDetails;
 
@@ -49,7 +54,25 @@ public class Tender {
         this.tenderDescription = tenderDescription;
         this.expectedValue = expectedValue;
         this.tenderDetails = tenderDetails;
-        System.out.println(tenderDetails.toString());
+    }
+
+    public Tender(User user, TenderStatus tenderStatus, String tenderDescription, double expectedValue, Date publishingDate, Date closingDate ) {
+        this.userCustomer = user;
+        this.tenderStatus = tenderStatus;
+        this.tenderDescription = tenderDescription;
+        this.expectedValue = expectedValue;
+        this.publishingDate = publishingDate;
+        this.closingDate = closingDate;
+    }
+
+    public Tender(User user, TenderStatus tenderStatus, String tenderDescription, double expectedValue, Date publishingDate, Date closingDate, Set<TenderDetail> tenderDetails) {
+        this.userCustomer = user;
+        this.tenderStatus = tenderStatus;
+        this.tenderDescription = tenderDescription;
+        this.expectedValue = expectedValue;
+        this.tenderDetails = tenderDetails;
+        this.publishingDate = publishingDate;
+        this.closingDate = closingDate;
     }
 
     public int getTenderID() {
@@ -57,6 +80,10 @@ public class Tender {
     }
 
     public User getUserCustomer() {
+        return userCustomer;
+    }
+
+    public User getUserCustomerByID() {
         return userCustomer;
     }
 
@@ -68,11 +95,11 @@ public class Tender {
         return goodCategory;
     }
 
-    public LocalDate getPublishingDate() {
+    public Date getPublishingDate() {
         return publishingDate;
     }
 
-    public LocalDate getClosingDate() {
+    public Date getClosingDate() {
         return closingDate;
     }
 
@@ -104,11 +131,11 @@ public class Tender {
         this.goodCategory = goodCategory;
     }
 
-    public void setPublishingDate(LocalDate publishingDate) {
+    public void setPublishingDate(Date publishingDate) {
         this.publishingDate = publishingDate;
     }
 
-    public void setClosingDate(LocalDate closingDate) {
+    public void setClosingDate(Date closingDate) {
         this.closingDate = closingDate;
     }
 
@@ -116,8 +143,8 @@ public class Tender {
         this.tenderDescription = tenderDescription;
     }
 
-    public void setTenderExpectedValue(double expectantValue) {
-        this.expectedValue = expectantValue;
+    public void setExpectedValue(double expectedValue) {
+        this.expectedValue = expectedValue;
     }
 
     public void setTenderDetails(Set<TenderDetail> tenderDetails) {

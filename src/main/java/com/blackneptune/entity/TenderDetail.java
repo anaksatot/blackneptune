@@ -33,6 +33,10 @@ public class TenderDetail {
         this.tender = tender;
     }
 
+    public TenderDetail() {
+
+    }
+
     @Override
     public String toString() {
         return "TenderDetail{" +
@@ -45,5 +49,23 @@ public class TenderDetail {
                 '}';
     }
 
+    public void setTender(Tender tender) {
+        this.tender = tender;
+    }
 
+    public void setGood(Good good) {
+        this.good = good;
+    }
+
+    public void setQuantity(Double quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setExpectedGoodValue(Double expectedGoodValue) {
+        this.expectedGoodValue = expectedGoodValue;
+    }
+
+    public void setGoodDescription(String goodDescription) {
+        this.goodDescription = goodDescription;
+    }
 }
