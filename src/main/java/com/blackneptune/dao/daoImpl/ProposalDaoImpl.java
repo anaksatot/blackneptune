@@ -50,12 +50,15 @@ public class ProposalDaoImpl implements ProposalDao {
         return (List<Proposal>) entityManager.createQuery(hql).getResultList();
     }
 
-    public boolean delete(Proposal proposal) {
-        return false;
+    public void delete(Proposal proposal) {
+        entityManager.remove(proposal);
     }
 
     @Override
-    public boolean deleteByProposalID(int proposalID) {
-        return false;
+    public void deleteByProposalID(int proposalID) {
+        Proposal proposalFromDB = findById(proposalID);
+        if (proposalFromDB != null) {
+            entityManager.remove(proposalFromDB);
+        }
     }
 }

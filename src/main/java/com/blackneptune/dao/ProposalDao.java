@@ -23,8 +23,8 @@ public interface ProposalDao {
 
     public List<Proposal> findAll();
 
-    public boolean delete(Proposal proposal);
+    public  void delete(Proposal proposal);
 
-    public boolean deleteByProposalID(int proposalID);
+    public  void deleteByProposalID(int proposalID);
 
 }

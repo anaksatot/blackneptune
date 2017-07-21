@@ -50,7 +50,7 @@ public class TenderServicesImpl implements TenderServices {
 
     @Override
     public Tender findById(int id) {
-        return null;
+        return tenderDao.findById(id);
     }
 
     @Override
